@@ -1,0 +1,8 @@
+{
+  "name": "test",
+  "description": "Test example project",
+  "runtime": "nodejs",
+  "memory": 128,
+  "timeout": 5,
+  "role": "<apex_function_role_here>"
+}
