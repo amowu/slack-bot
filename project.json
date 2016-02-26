@@ -5,4 +5,9 @@
   "memory": 128,
   "timeout": 5,
   "role": "arn:aws:iam::647768359793:role/lambda_function",
+  "handler": "build.default",
+  "hooks": {
+    "build": "../../node_modules/.bin/webpack --config ../../tools/webpack/webpack.config.js",
+    "clean": "rm -fr build"
+  }
 }
