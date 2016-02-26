@@ -1,8 +1,8 @@
 {
-  "name": "test",
-  "description": "Test example project",
+  "name": "slack",
+  "description": "Slack bot",
   "runtime": "nodejs",
   "memory": 128,
   "timeout": 5,
-  "role": "<apex_function_role_here>"
+  "role": "arn:aws:iam::647768359793:role/lambda_function",
 }
