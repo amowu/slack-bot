@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "apex.js": "^1.1.0",
+    "aws-sdk": "^2.2.40",
     "axios": "^0.9.1",
     "babel-polyfill": "^6.6.1"
   },

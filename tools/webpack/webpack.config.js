@@ -15,5 +15,13 @@ module.exports = {
       test: /\.json$/,
       loader: 'json-loader'
     }]
-  }
+  },
+  externals: [{
+    'aws-sdk': {
+      root: 'AWS',
+      commonjs: 'aws-sdk',
+      commonjs2: 'aws-sdk',
+      amd: 'aws-sdk'
+    }
+  }]
 }

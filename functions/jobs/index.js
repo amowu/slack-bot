@@ -1,5 +1,6 @@
 import λ from 'apex.js'
 import axios from 'axios'
+import AWS from 'aws-sdk'
 import 'babel-polyfill'
 
 export default λ((event, context) => {
