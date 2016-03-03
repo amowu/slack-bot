@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: './index.js',
   target: 'node',
@@ -16,6 +18,14 @@ module.exports = {
       loader: 'json-loader'
     }]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      minimize: true
+    })
+  ],
   externals: [{
     'aws-sdk': {
       root: 'AWS',
@@ -24,4 +34,4 @@ module.exports = {
       amd: 'aws-sdk'
     }
   }]
-}
+};
