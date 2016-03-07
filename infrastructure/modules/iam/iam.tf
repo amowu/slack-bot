@@ -1,4 +1,9 @@
 
+variable "dynamoDBTableARN" {
+  type = "string"
+  default = "*"
+}
+
 resource "aws_iam_role" "slackBotRole" {
   name = "slackBotRole"
   assume_role_policy = <<EOF
@@ -80,7 +85,7 @@ resource "aws_iam_role_policy" "AmazonDynamoDBFullAccess" {
         "lambda:DeleteFunction"
       ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Resource": "${var.dynamoDBTableARN}"
     }
   ]
 }
