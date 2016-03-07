@@ -4,7 +4,7 @@
   "runtime": "nodejs",
   "memory": 128,
   "timeout": 5,
-  "role": "arn:aws:iam::647768359793:role/lambda_function",
+  "role": "arn:aws:iam::647768359793:role/slackBotRole",
   "handler": "build.default",
   "hooks": {
     "build": "../../node_modules/.bin/webpack --config ../../tools/webpack/webpack.config.js",
