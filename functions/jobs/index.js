@@ -6,57 +6,61 @@ import {get, reduce, takeWhile} from 'lodash'
 const dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'})
 
 export default async function (event, context) {
-  // Get job item from DynamoDB Jobs table
-  const jobItem = await getDynamoDBJobItem()
-  // Get attribute 'LastUpdatedSourceID' from job item
-  // TODO: const { item: { LastUpdatedSourceID: lastUpdatedSourceID }} = jobItem
-  const { Item: { LastUpdatedSourceID: { S: lastUpdatedSourceID }}} = jobItem
-  if ( ! lastUpdatedSourceID) context.fail('lastUpdatedSourceID can not find')
+  try {
+    // Get job item from DynamoDB Jobs table
+    const jobItem = await getDynamoDBJobItem()
+    // Get attribute 'LastUpdatedSourceID' from job item
+    // TODO: const { item: { LastUpdatedSourceID: lastUpdatedSourceID }} = jobItem
+    const { Item: { LastUpdatedSourceID: { S: lastUpdatedSourceID }}} = jobItem
+    if ( ! lastUpdatedSourceID) context.fail('lastUpdatedSourceID can not find')
 
-  // Fetch last 10 record jobs list from API
-  // TODO: const jobs = await fetchJobs({...})
-  const results = await fetchJobs()
-  // Get jobs list from API response
-  // TODO: move to fetchJobs()
-  const { data: { results: jobs }} = results
-  if ( ! jobs || jobs.length === 0) context.succeed('API response have not results')
+    // Fetch last 10 record jobs list from API
+    // TODO: const jobs = await fetchJobs({...})
+    const results = await fetchJobs()
+    // Get jobs list from API response
+    // TODO: move to fetchJobs()
+    const { data: { results: jobs }} = results
+    if ( ! jobs || jobs.length === 0) context.succeed('API response have not results')
 
-  // Find newest jobs list by 'LastUpdatedSourceID'
-  // TODO: findNewJobs(arr, attr)
-  const newJobs = takeWhile(jobs, (job) => job['turnstilelink_link/_source'] !== `/rc/clk?jk=${lastUpdatedSourceID}`)
-  if (newJobs.length === 0) context.succeed('API response have not new jobs')
+    // Find newest jobs list by 'LastUpdatedSourceID'
+    // TODO: findNewJobs(arr, attr)
+    const newJobs = takeWhile(jobs, (job) => job['turnstilelink_link/_source'] !== `/rc/clk?jk=${lastUpdatedSourceID}`)
+    if (newJobs.length === 0) context.succeed('API response have not new jobs')
 
-  // Get last 1 source ID for update
-  const lastSourceLink = get(newJobs, ['0', 'turnstilelink_link/_source'])
-  const lastSourceID = get(lastSourceLink.match(/^\/rc\/clk\?jk=(.*)$/), ['1'])
-  // update 'lastSourceID' into 'LastUpdatedSourceID'
-  await updateDynamoDBJobItem({
-    attributeUpdates: {
-      'LastUpdatedSourceID': lastSourceID
-    }
-  })
+    // Get last 1 source ID for update
+    const lastSourceLink = get(newJobs, ['0', 'turnstilelink_link/_source'])
+    const lastSourceID = get(lastSourceLink.match(/^\/rc\/clk\?jk=(.*)$/), ['1'])
+    // update 'lastSourceID' into 'LastUpdatedSourceID'
+    await updateDynamoDBJobItem({
+      attributeUpdates: {
+        'LastUpdatedSourceID': lastSourceID
+      }
+    })
 
-  // Formatted new jobs list with Slack attachment structure
-  const attachments = newJobs.map((job) => {
-    const {
-      'location_value': location,
-      'company_value': company,
-      'resultlink_value': source,
-      'turnstilelink_link': url,
-      'turnstilelink_link/_title': title,
-      'summary_description': summary
-    } = job
+    // Formatted new jobs list with Slack attachment structure
+    const attachments = newJobs.map((job) => {
+      const {
+        'location_value': location,
+        'company_value': company,
+        'resultlink_value': source,
+        'turnstilelink_link': url,
+        'turnstilelink_link/_title': title,
+        'summary_description': summary
+      } = job
 
-    return {
-      'title': title,
-      'title_link': url,
-      'text': `${company} - ${location}\n${summary}\n${source}`
-    }
-  })
-  // Send newest jobs list to Slack message via HTTP POST method
-  await postNewJobsToSlack(attachments)
+      return {
+        'title': title,
+        'title_link': url,
+        'text': `${company} - ${location}\n${summary}\n${source}`
+      }
+    })
+    // Send newest jobs list to Slack message via HTTP POST method
+    // await postNewJobsToSlack(attachments)
 
   context.succeed()
+  } catch (err) {
+    context.fail(err)
+  }
 }
 
 function getDynamoDBItem (params) {
