@@ -1,4 +1,3 @@
-.terraform
 # Logs
 logs
 *.log
@@ -33,3 +32,12 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
