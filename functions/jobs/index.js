@@ -114,7 +114,7 @@ function createSlackJobsAttachments (jobs) {
 }
 
 function postNewJobsToSlackChannel (attachments) {
-  return postToChannel('https://hooks.slack.com/services/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', {
+  return postToChannel('YOUR_SLACK_CHANNEL_WEBHOOK_URL', {
     'text': `💼有${attachments.length}筆新的工作機會喲！`,
     'attachments': attachments
   })
