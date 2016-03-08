@@ -1,62 +1,45 @@
+# Slack Bot
 
-## Apex boilerplate
+My Slack Bot collection with serverless infrastructure.
 
- Boilerplate using [Terraform](https://www.terraform.io).
+## Requirement
 
-## Bootstrapping the environment
+- [Node.js](https://nodejs.org) v4.x.x
+- [Apex](http://apex.run) - a serverless infrastructure built on AWS Lambda.
+- [Terraform](https://www.terraform.io) (optional) - a common configuration to launch infrastructure.
+- [aws-cli](https://aws.amazon.com/cli/) (optional)
 
-Assuming your AWS credentials are ready to go, first cd into the env's dir:
+## Installation
 
-```
-$ cd terraform/envs/stage
-```
-
-Next create an S3 bucket in your AWS account, this is where state will be stored. Once a bucket is created, configure Terraform to use it:
-
-```
-$ terraform remote config \
-  -backend=s3 \
-  -backend-config="bucket=mybucketname" \
-  -backend-config="key=terraform/state/stage"
+```sh
+$ git clone https://github.com/amowu/slack-bot.git
+$ cd slack-bot
 ```
 
-Get the modules (not sure why TF needs this for local modules):
-
-```
-$ terraform get
+```sh
+$ npm install
 ```
 
-Run plan and you should see:
+Setup AWS infrastructure with Terraform (optional):
 
-```
-$ terraform plan
+```sh
+$ apex plan
+$ apex apply
 ...
-+ module.iam
-    2 resource(s)
-```
-
-Finally run apply to make the changes:
-
-```
-$ terraform apply
-...
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-  lambda_function_role_id = arn:aws:iam::<account>:role/lambda_function
+  lambdaFunctionRoleARN = arn:aws:iam::<account>:role/lambda_function
 ```
 
-The `lambda_function_role_id` is what you can use as the "role" in project.json. Once defined you can then run `apex deploy` and try it out with `apex invoke uppercase < request.json`. See the Apex wiki or `apex wiki` for more help.
+Copy and paste `lambdaFunctionRoleARN` to `role` field in `project.json`.
 
-Some day Apex may have tighter integration with Terraform which would get rid of this step.
+```sh
+$ apex deploy
+```
 
-## Badges
+## Usage
 
-![](https://img.shields.io/badge/license-MIT-blue.svg)
+1. jobs - comming soon...
 
----
-
-> [tjholowaychuk.com](http://tjholowaychuk.com) &nbsp;&middot;&nbsp;
-> GitHub [@tj](https://github.com/tj) &nbsp;&middot;&nbsp;
-> Twitter [@tjholowaychuk](https://twitter.com/tjholowaychuk)
