@@ -45,4 +45,5 @@ $ apex deploy
 
 1. put item to Jobs table (WIT)
 2. setup scheduled event source for Lambda function (WIT)
-3. coming soon...
+3. duplicate function.json.example and rename to function.json, copy and paste your Slack channel webhook URL to function.json (WIT)
+4. coming soon...
