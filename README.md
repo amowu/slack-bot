@@ -41,5 +41,8 @@ $ apex deploy
 
 ## Usage
 
-1. jobs - comming soon...
+### Jobs Bot
 
+1. put item to Jobs table (WIT)
+2. setup scheduled event source for Lambda function (WIT)
+3. coming soon...
