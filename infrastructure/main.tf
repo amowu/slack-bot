@@ -12,6 +12,10 @@ module "iam" {
   dynamoDBTableARN = "${module.dynamodb.dynamoDBTableARN}"
 }
 
+module "cloudwatch" {
+  source = "./modules/cloudwatch"
+}
+
 output "lambdaFunctionRoleARN" {
   value = "${module.iam.lambdaFunctionRoleARN}"
 }
