@@ -8,8 +8,15 @@ resource "aws_dynamodb_table" "jobsDynamoDBTable" {
       name = "JobID"
       type = "S"
     }
+}
+
+resource "aws_dynamodb_table" "earthquakeDynamoDBTable" {
+    name = "Earthquake"
+    read_capacity = 5
+    write_capacity = 5
+    hash_key = "EarthquakeID"
     attribute {
-      name = "LastUpdatedSourceID"
+      name = "EarthquakeID"
       type = "S"
     }
 }
