@@ -85,7 +85,7 @@ resource "aws_iam_role_policy" "AmazonDynamoDBFullAccess" {
         "lambda:DeleteFunction"
       ],
       "Effect": "Allow",
-      "Resource": "${var.dynamoDBTableARN}"
+      "Resource": "*"
     }
   ]
 }
