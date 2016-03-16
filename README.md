@@ -45,6 +45,8 @@ $ apex deploy
 
 coming soon...
 
+![slack_earthquake](https://cloud.githubusercontent.com/assets/559351/13821950/c9bffd80-ebde-11e5-8792-058ee814aae1.png)
+
 ### Google Bot
 
 coming soon...
@@ -55,6 +57,8 @@ coming soon...
 2. setup scheduled event source for Lambda function (WIT)
 3. duplicate function.json.example and rename to function.json, copy and paste your Slack channel webhook URL to function.json (WIT)
 4. coming soon...
+
+![slack_jobs](https://cloud.githubusercontent.com/assets/559351/13821931/b100fcb8-ebde-11e5-9b3f-63b672d27764.png)
 
 ### Movie Bot
 
