@@ -51,3 +51,6 @@ jspm_packages
 
 # sftp configuration file
 sftp-config.json
+
+
+function.json
