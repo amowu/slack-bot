@@ -24,10 +24,15 @@ export default async function (event, context) {
       getLastJobAttributeByKey('frontend', 'LastUpdatedSourceID')
     ])
 
+    console.log(`lastUpdatedSourceID: ${lastUpdatedSourceID}`)
+
     // 執行上述的 3
     const newJobList = takeWhile(jobList, job => job['turnstilelink_link/_source'] !== `/rc/clk?jk=${lastUpdatedSourceID}`)
     // 如果沒有新的 jobs，直接結束返回
-    if (newJobList.length === 0) return context.succeed('Have not new jobs')
+    if (newJobList.length === 0) {
+      console.log('Have not new jobs')
+      return context.succeed('Have not new jobs')
+    }
 
     // 取出最新一筆的 SourceID
     const lastNewJobSourceLink = get(newJobList, ['0', 'turnstilelink_link/_source'])
@@ -35,14 +40,20 @@ export default async function (event, context) {
     // 封裝一份 Slack 支援的接收格式
     const attachments = createSlackJobsAttachments(newJobList)
 
+    console.log(`lastNewJobSourceLink: ${lastNewJobSourceLink}`)
+    console.log(`lastNewJobSourceID: ${lastNewJobSourceID}`)
+    console.log(attachments)
+
     // 同時執行上述的 4 跟 5
-    await Promise.all([
+    const result = await Promise.all([
       updateJobAttributeByKey('frontend', { 'LastUpdatedSourceID': lastNewJobSourceID }),
       postNewJobsToSlackChannel(attachments)
     ])
 
-    context.succeed()
+    console.log(result)
+    context.succeed(result)
   } catch (error) {
+    console.error(error)
     context.fail(error)
   }
 }
