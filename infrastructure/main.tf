@@ -9,7 +9,6 @@ module "dynamodb" {
 
 module "iam" {
   source = "./modules/iam"
-  dynamoDBTableARN = "${module.dynamodb.dynamoDBTableARN}"
 }
 
 module "cloudwatch" {

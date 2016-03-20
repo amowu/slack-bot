@@ -1,9 +1,4 @@
 
-variable "dynamoDBTableARN" {
-  type = "string"
-  default = "*"
-}
-
 resource "aws_iam_role" "slackBotRole" {
   name = "slackBotRole"
   assume_role_policy = <<EOF
