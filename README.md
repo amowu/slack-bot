@@ -54,6 +54,8 @@ coming soon...
 3. function.json.example -> function.json (WIP)
 4. coming soon...
 
+![slack_google](https://cloud.githubusercontent.com/assets/559351/14066586/5301ecf8-f480-11e5-9965-bcc236377036.png)
+
 ### Jobs Bot
 
 1. put item to Jobs table (WIP)
