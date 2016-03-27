@@ -11,7 +11,15 @@ export default async function (event, context) {
 
     context.succeed(attachment)
   } catch (error) {
-    context.fail(error)
+    context.succeed({
+      'response_type': 'in_channel',
+      'attachments': [
+        {
+          'text': '你把小秘書玩壞了！',
+          'color': 'danger'
+        }
+      ]
+    })
   }
 }
 
