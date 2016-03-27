@@ -1,14 +1,26 @@
 
-provider "aws" {
-  region = "us-east-1"
+variable "region" {
+  type = "string"
+  default = "us-east-1"
 }
 
-module "dynamodb" {
-  source = "./modules/dynamodb"
+provider "aws" {
+  region = "${var.region}"
 }
 
 module "iam" {
   source = "./modules/iam"
+}
+
+module "api_gateway" {
+  source = "./modules/api_gateway"
+  region = "${var.region}"
+  function = "arn:aws:lambda:us-east-1:647768359793:function:slack_google"
+  role = "${module.iam.gatewayInvokeLambdaRoleARN}"
+}
+
+module "dynamodb" {
+  source = "./modules/dynamodb"
 }
 
 module "cloudwatch" {
