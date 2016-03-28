@@ -1,9 +1,4 @@
 
-variable "dynamoDBTableARN" {
-  type = "string"
-  default = "*"
-}
-
 resource "aws_iam_role" "slackBotRole" {
   name = "slackBotRole"
   assume_role_policy = <<EOF
@@ -16,6 +11,46 @@ resource "aws_iam_role" "slackBotRole" {
         "Service": "lambda.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role" "gatewayInvokeLambdaRole" {
+  name = "gatewayInvokeLambdaRole"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "invokeLambda" {
+  name = "invokeLambda"
+  role = "${aws_iam_role.gatewayInvokeLambdaRole.id}"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+        "*"
+      ],
+      "Action": [
+        "lambda:InvokeFunction"
+      ]
     }
   ]
 }
@@ -85,7 +120,7 @@ resource "aws_iam_role_policy" "AmazonDynamoDBFullAccess" {
         "lambda:DeleteFunction"
       ],
       "Effect": "Allow",
-      "Resource": "${var.dynamoDBTableARN}"
+      "Resource": "*"
     }
   ]
 }

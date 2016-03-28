@@ -1,0 +1,5 @@
+{
+  "environment": {
+    "SLACK_WEBHOOK_URL": "YOUR_JOS_SLACK_CHANNEL_WEBHOOK_URL"
+  }
+}
