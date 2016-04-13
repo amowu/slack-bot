@@ -73,7 +73,7 @@ coming soon...
 4. add Lambda IP range to LINE whitelist (WIP)
 5. coming soon...
 
-![8e6a316b-a24c-202c-8417-f68413e7354d](https://cloud.githubusercontent.com/assets/559351/14495911/f799a5e4-01c3-11e6-87f4-634765d31dec.png)
+![cf3whhiusaaiiyv](https://cloud.githubusercontent.com/assets/559351/14496160/de578bb8-01c4-11e6-8e78-8d1a3867901b.jpg)
 
 ### Movie Bot
 
