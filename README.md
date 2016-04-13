@@ -65,10 +65,16 @@ coming soon...
 
 ![slack_jobs](https://cloud.githubusercontent.com/assets/559351/13821931/b100fcb8-ebde-11e5-9b3f-63b672d27764.png)
 
+### LINE Chat Bot
+
+1. 申請相關 API KEY (docomo, LINE, Google...) (WIP)
+2. function.json.example -> function.json (WIP)
+3. setup AWS infrastructure... (WIP)
+4. add Lambda IP range to LINE whitelist (WIP)
+5. coming soon...
+
+![8e6a316b-a24c-202c-8417-f68413e7354d](https://cloud.githubusercontent.com/assets/559351/14495911/f799a5e4-01c3-11e6-87f4-634765d31dec.png)
+
 ### Movie Bot
-
-coming soon...
-
-### Translate Bot
 
 coming soon...

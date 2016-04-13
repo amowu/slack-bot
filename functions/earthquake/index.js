@@ -11,8 +11,9 @@ export default async function (event, context) {
   try {
     const payload = await fetchAndGetEarthquake()
     if (haveNewEarthquake(payload)) {
-      await saveAndPostNewEarthquake(payload)
+      const results = await saveAndPostNewEarthquake(payload)
 
+      console.log(results)
       context.succeed()
     } else {
       console.log('Have not new earthquake')
