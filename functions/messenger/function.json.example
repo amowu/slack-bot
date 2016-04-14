@@ -1,0 +1,7 @@
+{
+  "environment": {
+    "DOCOMO_API_KEY": "YOUR_DOCOMO_API_KEY",
+    "FACEBOOK_TOKEN": "YOUR_FACEBOOK_TOKEN",
+    "GOOGLE_API_KEY": "YOUR_GOOGLE_API_KEY"
+  }
+}
