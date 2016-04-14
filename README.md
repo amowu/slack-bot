@@ -65,15 +65,15 @@ coming soon...
 
 ![slack_jobs](https://cloud.githubusercontent.com/assets/559351/13821931/b100fcb8-ebde-11e5-9b3f-63b672d27764.png)
 
-### LINE Chat Bot
+### LINE / Facebook Messenger Chat Bot
 
-1. 申請相關 API KEY (docomo, LINE, Google...) (WIP)
+1. 申請相關 API KEY (LINE, Facebook Messenger, docomo, Google...) (WIP)
 2. function.json.example -> function.json (WIP)
 3. setup AWS infrastructure... (WIP)
 4. add Lambda IP range to LINE whitelist (WIP)
 5. coming soon...
 
-![cf3whhiusaaiiyv](https://cloud.githubusercontent.com/assets/559351/14496160/de578bb8-01c4-11e6-8e78-8d1a3867901b.jpg)
+![thumb_img_7390_1024](https://cloud.githubusercontent.com/assets/559351/14522145/bdb535e0-025f-11e6-9246-4e412a4ec693.jpg)
 
 ### Movie Bot
 
